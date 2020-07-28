@@ -1,0 +1,39 @@
+{
+  "docType": "Fiscal Year Calendar",
+  "docNbr": 110,
+  "ranges": [
+    {
+      "companyNbr": "C101",
+      "year": 2019,
+      "dates": [
+        {"period": 5, "startDate":"06/02/2019", "endDate": "06/29/2019"},
+        {"period": 6, "startDate":"06/30/2019", "endDate": "08/03/2019"},
+        {"period": 7, "startDate":"08/04/2019", "endDate": "08/31/2019"},
+        {"period": 8, "startDate":"09/01/2019", "endDate": "09/28/2019"},
+        {"period": 9, "startDate":"09/29/2019", "endDate": "11/02/2019"},
+        {"period": 10, "startDate":"11/03/2019", "endDate": "11/30/2019"},
+        {"period": 11, "startDate":"12/01/2019", "endDate": "12/28/2019"},
+        {"period": 12, "startDate":"12/29/2019", "endDate": "02/01/2020"}
+      ]
+    },
+    {
+      "companyNbr": "C101",
+      "year": 2020,
+      "dates": [
+        {"period": 1, "startDate":"02/02/2020", "endDate": "02/29/2020"},
+        {"period": 2, "startDate":"03/01/2020", "endDate": "03/28/2020"},
+        {"period": 3, "startDate":"03/29/2020", "endDate": "05/02/2020"},
+        {"period": 4, "startDate":"05/03/2020", "endDate": "05/30/2020"},
+        {"period": 5, "startDate":"05/31/2020", "endDate": "06/27/2020"},
+        {"period": 6, "startDate":"06/28/2020", "endDate": "08/01/2020"},
+        {"period": 7, "startDate":"08/02/2020", "endDate": "08/29/2020"},
+        {"period": 8, "startDate":"08/30/2020", "endDate": "09/26/2020"},
+        {"period": 9, "startDate":"09/27/2020", "endDate": "10/31/2020"},
+        {"period": 10, "startDate":"11/01/2020", "endDate": "11/28/2020"},
+        {"period": 11, "startDate":"11/29/2020", "endDate": "12/26/2020"},
+        {"period": 12, "startDate":"12/27/2020", "endDate": "01/30/2021"}
+      ]
+
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+<div class="allContent">
+<div class="container jumbotron">
+  <div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog"
+       aria-labelledby="myModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h4 *ngIf="popupMode=='save'" class="modal-title w-100 font-weight-bold">Add New User</h4>
+          <h4 *ngIf="popupMode=='edit'" class="modal-title w-100 font-weight-bold">Update User</h4>
+          <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+          <!--<span aria-hidden="true">&times;</span>-->
+          <!--</button>-->
+        </div>
+        <div class="modal-body mx-3">
+          <div *ngIf="saveSuccess" class="text-center"><h6 class="font-weight-bolder font-italic text-success">Save
+            Success</h6></div>
+          <div *ngIf="updateSuccess" class="text-center"><h6 class="font-weight-bolder font-italic text-success">Update
+            Success</h6></div>
+          <div>
+            <input type="text" id="defaultForm-name" class="form-control validate" [(ngModel)]="user.name" name="uname">
+            <label data-error="wrong" data-success="right" for="defaultForm-name">Name</label>
+          </div>
+
+          <div>
+            <input type="email" id="defaultForm-mail" class="form-control validate" [(ngModel)]="user.email"
+                   name="mail" email>
+            <label data-error="wrong" data-success="right" for="defaultForm-mail">E-mail</label>
+            <div *ngIf="emailValidation"><h5 class="font-weight-bolder font-italic text-danger">Please Enter Valid
+              E-mail!</h5></div>
+            <div *ngIf="isEmailExists"><h5 class="font-weight-bolder font-italic text-danger">E-mail Already Exists</h5></div>
+          </div>
+
+          <div *ngIf="popupMode=='save'">
+            <input type="text" id="defaultForm-pass" class="form-control validate" [(ngModel)]="user.password"
+                   name="password">
+            <label data-error="wrong" data-success="right" for="defaultForm-pass">Password</label>
+          </div>
+
+          <div>
+            <input type="number" id="defaultForm-number" class="form-control validate" [(ngModel)]="user.number"
+                   name="number">
+            <label data-error="wrong" data-success="right" for="defaultForm-number">Mobile Number</label>
+          </div>
+
+          <div>
+            <select class="browser-default custom-select" [(ngModel)]="user.role" name="role">
+              <option value="admin">admin</option>
+              <option value="employer" selected>employer</option>
+            </select>
+            <label data-error="wrong" data-success="right">Select Role</label>
+          </div>
+
+        </div>
+        <div *ngIf="errorMessage" class="text-center"><h6 class="font-weight-bolder font-italic text-warning">Fill all
+          Fields</h6></div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button [disabled]="loadingSpinner" *ngIf="popupMode=='save'" class="btn btn-default" (click)="saveUser()">
+            <div *ngIf="!loadingSpinner">
+              Save
+            </div>
+            <div *ngIf="loadingSpinner" class="col loading">
+              <div class="d-flex">
+                <div class="spinner-border spinner-border-sm" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            </div>
+          </button>
+          <button *ngIf="popupMode=='edit'" class="btn btn-default" (click)="updateUser()">
+            <div *ngIf="!loadingSpinner">
+              Update
+            </div>
+            <div *ngIf="loadingSpinner" class="col loading">
+              <div class="d-flex">
+                <div class="spinner-border spinner-border-sm" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            </div>
+          </button>
+          <button [disabled]="loadingSpinner" class="btn btn-info " data-dismiss="modal" (click)="resetForm()">Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <a href="" class="btn btn-outline-default waves-effect btn-sm" data-toggle="modal" data-target="#modalLoginForm"
+       (click)="newUser()">New
+      User</a>
+  </div>
+
+  <br>
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Number</th>
+      <th>Role</th>
+      <th>Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user1 of list">
+      <td>{{user1.name}}</td>
+      <td>{{user1.email}}</td>
+      <td>{{user1.number}}</td>
+      <td>{{user1.role}}</td>
+      <td>
+        <!--<button class="btn btn-outline-primary waves-effect btn-sm" (click)="editUser(user)">Edit</button>-->
+
+        <a href="" class="btn btn-outline-default waves-effect btn-sm" data-toggle="modal"
+           data-target="#modalLoginForm" (click)="getUserForedit(user1)">Edit</a>
+
+        <button [disabled]="user.id == user1.id" class="btn btn-outline-danger waves-effect btn-sm" (click)="removeUser(user1)">
+          <div *ngIf="!(user.id == user1.id)">
+            Remove
+          </div>
+          <div *ngIf="user.id == user1.id" class="col loading">
+            <div class="d-flex">
+              <div class="spinner-border spinner-border-sm" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </div>
+        </button>
+        <button class="btn btn-outline-primary waves-effect btn-sm" (click)="analytic(user1)">Analytic</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</div>

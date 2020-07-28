@@ -1,0 +1,33 @@
+<div>
+  <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color">
+    <a class="navbar-brand text-white">Hours App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link " [routerLink]="['/home']" *ngIf="authService.loggedIn()">Home</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link " [routerLink]="['/dashboard']" *ngIf="authService.loggedIn()">Dashboard</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link" [routerLink]="['/profile']" *ngIf="authService.loggedIn()">Profile</a>
+        </li>
+      </ul>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link " href="#" (click)="onLogoutClick()" *ngIf="authService.loggedIn()">Logout</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link " [routerLink]="['/']" *ngIf="!authService.loggedIn()">Login</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+

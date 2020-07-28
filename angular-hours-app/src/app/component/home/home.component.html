@@ -1,0 +1,77 @@
+<div class="allContent">
+  <div class="container jumbotron jumboText">
+    <h1 class="text-center title">Add Hours Details</h1>
+    <hr>
+    <br>
+    <div class="row">
+      <div class="col-6" *ngIf="user"><h4 class="font-weight-bold ">{{user.name}}</h4></div>
+      <div class="col-6" *ngIf="user"><p class="font-weight-bolder text-right">{{user.email}}</p></div>
+    </div>
+    <br>
+    <form (submit)="addHoursData()">
+      <div class="font-weight-bolder">Select Project</div>
+      <select class="btn btn-sm btn-default mdb-select md-form colorful-select dropdown-primary"
+              (change)="selectChangeHandler($event)">
+        <option>Select Project</option>
+        <option [value]="pNames._id" *ngFor="let pNames of projects">{{pNames.name}}</option>
+      </select>
+      <br>
+      <br>
+      <div class="row">
+        <div class="form-group col">
+          <label for="hour" class="font-weight-bolder">Add hours:</label>
+          <input type="number"
+                 class="form-control"
+                 placeholder="Enter Hours"
+                 id="hour"
+                 [(ngModel)]="hours"
+                 name="hours"
+          >
+        </div>
+
+        <div class="col">
+          <p class="font-weight-bolder">Select Date</p>
+          <ejs-datepicker
+            [value]='dateValue'
+            [(ngModel)]=dateValue
+            placeholder='Enter date'
+            [ngModelOptions]="{standalone: true}"
+          >
+          </ejs-datepicker>
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="Textarea1" class="font-weight-bolder">Note</label>
+        <textarea class="form-control" id="Textarea1" rows="3" [(ngModel)]="note" name="note"></textarea>
+        <div class="row">
+          <div class="button-style">
+            <button [disabled]="loadingSpinner" class="btn btn-outline-default waves-effect">
+              Submit
+            </button>
+          </div>
+          <div *ngIf="loadingSpinner" class="col loading">
+            <div class="d-flex">
+              <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+
+  <div *ngIf="showOrNot" class="container text-center">
+    <div class="row container">
+        <div class="col-lg-6 ">
+          <button class="btn btn-default btn-sm" (click)="userDetailsClick()">User Details</button>
+        </div>
+        <div class="col-lg-6">
+          <button class="btn btn-primary btn-sm" (click)="projectDetailsClick()">Project Details</button>
+        </div>
+    </div>
+  </div>
+</div>
+

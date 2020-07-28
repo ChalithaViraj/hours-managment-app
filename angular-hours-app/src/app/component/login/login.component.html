@@ -1,0 +1,19 @@
+<div class="container d-flex justify-content-center">
+
+
+<div class="card cardSize">
+  <form (submit)="loginUser()">
+    <h2 class="h4 mb-4 loginText">Login</h2>
+    <div class="cardContent">
+      <div class="form-group">
+        <input type="email" [(ngModel)]="email" name="email" class="form-control mb-4" placeholder="E-mail" id="email">
+      </div>
+      <div class="form-group">
+        <input type="password" [(ngModel)]="password" name="password" class="form-control mb-4" placeholder="Password" id="pwd">
+      </div>
+      <button type="submit" class="btn btn-default btn-lg btn-block">Submit</button>
+    </div>
+  </form>
+</div>
+
+  </div>

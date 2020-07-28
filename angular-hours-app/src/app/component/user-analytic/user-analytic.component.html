@@ -1,0 +1,58 @@
+<div class="allContent container">
+  <div>
+    <div class="row">
+      <div class="col">
+        <h3>{{userName}} Hour Summary</h3>
+        <table class="table table-striped border border-info">
+          <thead>
+          <tr>
+            <th scope="col" class="text-center">Project Name</th>
+            <th scope="col" class="text-center">Hours</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let project of allNamesAndHours; let i = index">
+            <td class="text-center">{{project[0]}}</td>
+            <td class="text-center">{{project[1]}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col">
+        <google-chart #chart
+                      [title]="title"
+                      [type]="type"
+                      [data]="data"
+                      [columnNames]="columnNames"
+                      [options]="options"
+                      [width]="width"
+                      [height]="height">
+        </google-chart>
+        <br>
+      </div>
+
+    </div>
+    <div class="jumbotron">
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+        <thead>
+        <tr>
+          <th scope="col" class="text-center">Name</th>
+          <th scope="col" class="text-center">Hours</th>
+          <th scope="col" class="text-center">Date</th>
+          <th scope="col" class="text-center">Note</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of list">
+          <td class="text-center">{{data.project.name}}</td>
+          <td class="text-center">{{data.hours}}</td>
+          <td class="text-center">{{data.date | date:'medium'}}</td>
+          <td class="text-center">{{data.note}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+

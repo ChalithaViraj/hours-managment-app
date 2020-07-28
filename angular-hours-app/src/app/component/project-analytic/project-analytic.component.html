@@ -1,0 +1,63 @@
+<div class="allContent container">
+  <div>
+    <div class="row">
+      <div class="col">
+        <h3>Summary Of Project : {{projectName}}</h3>
+        <table class="table table-striped border border-info">
+          <thead>
+          <tr>
+            <th scope="col" class="text-center font-weight-bold">Name</th>
+            <th scope="col" class="text-center font-weight-bold">User Total Hours</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of allNamesAndHours">
+            <td class="text-center">{{data[0]}}</td>
+            <td class="text-center">{{data[1]}}</td>
+          </tr>
+          <tr>
+            <td class="text-center font-weight-bolder">Overall Total Hours</td>
+            <td class="text-center font-weight-bolder">{{grandTotal}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col">
+        <google-chart #chart
+                      [title]="title"
+                      [type]="type"
+                      [data]="data"
+                      [columnNames]="columnNames"
+                      [options]="options"
+                      [width]="width"
+                      [height]="height">
+        </google-chart>
+        <br>
+      </div>
+    </div>
+    <div class="jumbotron">
+      <h3>All Entries Of Project : {{projectName}}</h3>
+      <br>
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+        <thead>
+        <tr>
+          <th scope="col" class="text-center">User Name</th>
+          <th scope="col" class="text-center">Hours</th>
+          <th scope="col" class="text-center">Date</th>
+          <th scope="col" class="text-center">Note</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of list">
+          <td class="text-center">{{data.user.name}}</td>
+          <td class="text-center">{{data.hours}}</td>
+          <td class="text-center">{{data.date | date:'medium'}}</td>
+          <td class="text-center">{{data.note}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+

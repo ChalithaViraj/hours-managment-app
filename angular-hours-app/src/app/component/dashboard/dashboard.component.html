@@ -1,0 +1,91 @@
+<div class="allContent container">
+  <div class="row">
+    <div class="col">
+      <h3>Summary of My Project Details</h3>
+      <table class="table table-striped border border-info">
+        <thead>
+        <tr>
+          <th scope="col" class="text-center">Project Name</th>
+          <th scope="col" class="text-center">Total Hours</th>
+          <th scope="col" class="text-center">Details</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let project of allNamesAndHours">
+          <td class="text-center">{{project[0]}}</td>
+          <td class="text-center">{{project[1]}}</td>
+          <td class="text-center">
+            <button class="btn btn-outline-primary waves-effect btn-sm" (click)="projectClicked(project)">Analytic</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+      <google-chart #chart
+                    [title]="title"
+                    [type]="type"
+                    [data]="data"
+                    [columnNames]="columnNames"
+                    [options]="options"
+                    [width]="width"
+                    [height]="height">
+      </google-chart>
+      <br>
+    </div>
+
+  </div>
+  <div>
+    <div>
+      <div class="text-center jumbotron jumboText">
+        <h3 class="container title" *ngIf="user">All Hours Details</h3>
+        <hr>
+        <div>
+          <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
+            <table class="table table-bordered auto-index row-border hover" datatable [dtOptions]="dtOptions"
+                   [dtTrigger]="dtTrigger">
+              <thead>
+              <tr>
+                <th>No</th>
+                <th scope="col">Project</th>
+                <th scope="col">Hours</th>
+                <th scope="col">Date</th>
+                <th scope="col">Note</th>
+                <th scope="col">Remove</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let hour of list">
+                <td class="count"></td>
+                <td>{{hour.project.name}}
+                  <div *ngIf="hour.project.active==false">Closed Project</div>
+                </td>
+                <td>{{hour.hours}}</td>
+                <td>{{hour.date | date:'medium'}}</td>
+                <td>{{hour.note}}</td>
+                <td>
+                  <button [disabled]="loadingSpinner" class="btn btn-danger btn-sm" (click)="removeHour(hour)">
+                    <div *ngIf="!loadingSpinner">
+                      Remove
+                    </div>
+                    <div *ngIf="loadingSpinner && hour._id===selectId" class="col loading">
+                      <div class="d-flex">
+                        <div class="spinner-border spinner-border-sm" role="status">
+                          <span class="sr-only">Loading...</span>
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

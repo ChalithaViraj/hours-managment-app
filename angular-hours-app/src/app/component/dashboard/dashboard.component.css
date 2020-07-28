@@ -1,0 +1,33 @@
+.jumboText{
+  padding-top: 20px;
+}
+
+.title{
+  padding-bottom: 10px;
+  padding-top: 20px;
+}
+
+.allContent{
+  padding-top: 50px;
+}
+
+.my-custom-scrollbar {
+  position: relative;
+  height: 600px;
+  overflow: auto;
+}
+.table-wrapper-scroll-y {
+  display: block;
+}
+
+table {
+  counter-reset: section;
+}
+
+.count:before {
+  counter-increment: section;
+  content: counter(section);
+}
+
+
+

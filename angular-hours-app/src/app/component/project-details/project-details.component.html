@@ -1,0 +1,118 @@
+<div class="allContent">
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalProjectAddForm" tabindex="-1"
+     role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 *ngIf="popupMode=='save'" class="modal-title w-100 font-weight-bold">Add New Project</h4>
+        <h4 *ngIf="popupMode=='edit'" class="modal-title w-100 font-weight-bold">Update Project</h4>
+
+        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+        <!--<span aria-hidden="true">&times;</span>-->
+        <!--</button>-->
+      </div>
+      <div class="modal-body mx-3">
+
+        <div *ngIf="saveSuccess" class="text-center"><h6 class="font-weight-bolder font-italic text-success">Save
+          Success</h6></div>
+        <div *ngIf="saveError" class="text-center"><h6 class="font-weight-bolder font-italic text-success">Something
+          wrong!</h6></div>
+
+        <div *ngIf="updateSuccess" class="text-center"><h6 class="font-weight-bolder font-italic text-success">Update
+          Success</h6></div>
+        <div *ngIf="updateError" class="text-center"><h6 class="font-weight-bolder font-italic text-success">Something
+          Wrong</h6></div>
+
+        <div>
+          <input type="text" id="defaultForm-name" class="form-control validate" [(ngModel)]="project.name"
+                 name="pnumber">
+          <label>Name</label>
+        </div>
+
+        <div>
+          <input type="text" id="defaultForm-mail" class="form-control validate" [(ngModel)]="project.client"
+                 name="client">
+          <label data-error="wrong" data-success="right" for="defaultForm-mail">Client</label>
+        </div>
+
+      </div>
+      <div *ngIf="errorMessage" class="text-center"><h6 class="font-weight-bolder font-italic text-warning">Fill all
+        Fields</h6></div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button [disabled]="loadingSpinner" *ngIf="popupMode=='save'" class="btn btn-default" (click)="saveProject()">
+          <div *ngIf="!loadingSpinner">
+            Save
+          </div>
+          <div *ngIf="loadingSpinner" class="col loading">
+            <div class="d-flex">
+              <div class="spinner-border spinner-border-sm" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </div>
+        </button>
+        <button *ngIf="popupMode=='edit'" class="btn btn-default" (click)="updateProject()">
+          <div *ngIf="!loadingSpinner">
+            Update
+          </div>
+          <div *ngIf="loadingSpinner" class="col loading">
+            <div class="d-flex">
+              <div class="spinner-border spinner-border-sm" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </div>
+        </button>
+        <button [disabled]="loadingSpinner" class="btn btn-info " data-dismiss="modal" (click)="closeButton()">Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar jumbotron container">
+  <button class="btn btn-outline-default waves-effect btn-sm" data-toggle="modal" data-target="#modalProjectAddForm"
+          (click)="newProject()">New
+    Project
+  </button>
+  <br>
+  <br>
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+    <thead>
+    <tr>
+      <th scope="col" class="text-center">Name</th>
+      <th scope="col" class="text-center">Client</th>
+      <th scope="col" class="text-center">Total Hours</th>
+      <th scope="col" class="text-center">Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let pname of list; let i = index">
+      <td class="text-center">{{pname.name}}</td>
+      <td class="text-center">{{pname.client}}</td>
+      <td class="text-center">{{totalHoursArray[i]}}</td>
+      <td class="text-center">
+        <button class="btn btn-outline-default waves-effect btn-sm" (click)="getProjectForEdit(pname)"
+                data-toggle="modal"
+                data-target="#modalProjectAddForm">Edit
+        </button>
+        <button [disabled]="loadingSpinnerForRemove" class="btn btn-outline-danger waves-effect btn-sm" (click)="projectRemove(pname)">
+          <div *ngIf="!(pname._id === project._id)">
+            Remove
+          </div>
+          <div *ngIf="pname._id === project._id" class="col loading">
+            <div class="d-flex">
+              <div class="spinner-border spinner-border-sm" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </div>
+        </button>
+        <button class="btn btn-outline-primary waves-effect btn-sm" (click)="analytic(pname)">Analytic</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</div>
